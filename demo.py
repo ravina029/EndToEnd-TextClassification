@@ -1,11 +1,7 @@
 from Hatetext.logger import logging
 from Hatetext.exception import CustomException
-import sys 
+import sys
+from Hatetext.configuration.gcloud_syncer import GCloudSync 
 
-#logging.info("welcome to my projectsssss")
-
-try:
-    a=6/"0"
-
-except Exception as e:
-    raise CustomException(e,sys) from e
+obj=GCloudSync()
+obj.sync_folder_from_gcloud("hatespeech-project","dataset.zip",'downloaded/dataset.zip')
