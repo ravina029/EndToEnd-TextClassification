@@ -14,17 +14,22 @@
 ## steps to run?
 
 1. setup environment variable 
-''' bash 
+``` bash 
 conda create -p nlpvenv python==3.10 -y
-'''
+```
 
-''' bash 
+``` bash 
 conda activate nlpvenv/
-'''
+```
 
-'''bash 
+```bash 
 pip install -r requirements.txt
-'''
+```
+
+```bash 
+python app.py
+
+```
 
 # install gcloud sdk 
 1. for mac run command "curl https://sdk.cloud.google.com | bash" in terminal and follow along.
