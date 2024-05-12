@@ -6,8 +6,8 @@
 ## Project Workflow
 1. update constants
 2. update artifacts_entity
-3. components
-4. pipeline
+3. ceate components
+4. update pipeline
 5. main
  
 

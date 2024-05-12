@@ -164,3 +164,4 @@ cython_debug/
 
 dataset/
 gcloud/
+artifacts/
