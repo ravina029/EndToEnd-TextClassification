@@ -1,5 +1,7 @@
 import os 
 from datetime import datetime
+import tensorflow.keras.losses as losses
+loss_function = losses.BinaryCrossentropy()
 
 
 TIMESTAMP=datetime.now().strftime("%m_%d_%Y_%H_%M_%S")
@@ -28,3 +30,22 @@ AXIS=1
 INPLACE=True
 DROP_COLUMNS=["Unnamed: 0","count","hate_speech","offensive_language","neither"]
 CLASS='class'
+
+#Model trainer constants
+MODEL_TRAINER_ARTIFACTS_DIR="ModelTrainerArtifacts"
+TRAINED_MODEL_DIR="trained_model"
+TRAINED_MODEL_NAME="model.h5"
+X_TEST_FILE_NAME="x_test.csv"
+Y_TEST_FILE_NAME="y_test.csv"
+X_TRAIN_FILE_NAME="X_train.csv"
+RANDOM_STATE=42
+EPOCH=2
+BATCH_SIZE=128
+VALIDATION_SPLIT=0.25
+
+#MODEL ARCHITECHURE CONSTANTS
+MAX_WORDS=500000
+MAX_LEN=300
+LOSS=loss_function
+METRICS=['accuracy']
+ACTIVATION="sigmoid"
