@@ -19,3 +19,12 @@ DATA_INGESTION_IMBALANCE_DATA_DIR="Imbalanced_data.csv"
 DATA_INGESTION_RAW_DATA_DIR="raw_data.csv"
 
 
+# Data transformation related constants
+DATA_TRANSFORMATION_ARTIFACTS_DIR='DatatransformationArtifacts'
+TRANSFORMED_FILE_NAME='final.csv'
+DATA_DIR='data'
+ID='id'
+AXIS=1
+INPLACE=True
+DROP_COLUMNS=["Unnamed: 0","count","hate_speech","offensive_language","neither"]
+CLASS='class'

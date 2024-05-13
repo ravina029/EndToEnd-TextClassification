@@ -1,31 +1,48 @@
 import sys
+import os 
 from Hatetext.logger import logging
 from Hatetext.exception import CustomException
-from Hatetext.components.data_ingestion import DataIngestion 
-from Hatetext.entity.config_entity import DataIngestionConfig
-from Hatetext.entity.artifact_entity import DataIngestionArtifacts
+from Hatetext.components.data_ingestion import DataIngestion
+from Hatetext.components.data_transformation import DataTransformation 
+from Hatetext.entity.config_entity import DataIngestionConfig,DataTransformationConfig
+from Hatetext.entity.artifact_entity import DataIngestionArtifacts,DataTransformationArtifacts
 
 
 class TrainPipeline:
     def __init__(self):
         self.data_ingestion_config=DataIngestionConfig()
+        self.data_transformation_config=DataTransformationConfig()
 
     
     def start_data_ingestion(self)-> DataIngestionArtifacts:
         logging.info("Entered into start_data_ingestion method of TrainPipeline class")
-        data_inestion=DataIngestion(data_ingestion_config=self.data_ingestion_config)
+        data_ingestion=DataIngestion(data_ingestion_config=self.data_ingestion_config)
 
-        data_inestion_artifacts=data_inestion.initiate_data_ingestion()
+        data_ingestion_artifacts=data_ingestion.initiate_data_ingestion()
         logging.info("got train and validation datasets from gcloud storage")
         logging.info("exited from start_data_ingestion method of Training pipeline")
 
-        return data_inestion_artifacts
+        return data_ingestion_artifacts
+    
+    def start_data_transformation(self,data_ingestion_artifacts=DataIngestionArtifacts) ->DataTransformationArtifacts:
+        logging.info("Initializing the data transfornmation methods in the training pipeline")
+        try:
+            data_transformation=DataTransformation(data_ingestion_artifacts=data_ingestion_artifacts,data_transformation_config=self.data_transformation_config)
+
+
+            data_transformation_artifacts=data_transformation.initiate_data_transformation()
+            logging.info('exited the start_data_transformation method of training pipeline')
+
+            return data_transformation_artifacts
+        except Exception as e:
+            raise CustomException(e,sys) from e
     
 
     def run_puipeline(self):
         logging.info("Entered into run_pipeline method of the Training pipeline")
         try: 
-            data_inestion_artifacts=self.start_data_ingestion()
+            data_ingestion_artifacts=self.start_data_ingestion()
+            data_transformation_artifacts=self.start_data_transformation(data_ingestion_artifacts=data_ingestion_artifacts)
         
             logging.info("Exited from run_pipeline method of the Training pipeline")
 
