@@ -39,7 +39,7 @@ X_TEST_FILE_NAME="x_test.csv"
 Y_TEST_FILE_NAME="y_test.csv"
 X_TRAIN_FILE_NAME="X_train.csv"
 RANDOM_STATE=42
-EPOCH=2
+EPOCH=4
 BATCH_SIZE=128
 VALIDATION_SPLIT=0.25
 
@@ -49,3 +49,12 @@ MAX_LEN=300
 LOSS=loss_function
 METRICS=['accuracy']
 ACTIVATION="sigmoid"
+
+#Model evaluation constants
+MODEL_EVALUATION_ARTIFACTS_DIR='ModelEvaluationArtifacts'
+BEST_MODEL_DIR='best_model'
+MODEL_EVALUATION_FILE_NAME='loss.csv'
+
+MODEL_NAME='model.h5'
+APP_HOST='0.0.0.0'
+APP_PORT=8080

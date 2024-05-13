@@ -11,6 +11,7 @@ from Hatetext.exception import CustomException
 from Hatetext.entity.config_entity import ModelTrainerConfig
 from Hatetext.entity.artifact_entity import ModelTrainerArtifacts,DataTransformationArtifacts
 from Hatetext.ml.model import ModelArchitechure
+from keras.optimizers import RMSprop
 import tensorflow.keras.losses as losses
 loss_function = losses.BinaryCrossentropy()
 
@@ -85,6 +86,10 @@ class ModelTrainer:
                       batch_size=self.model_trainer_config.BATCH_SIZE,
                       epochs=self.model_trainer_config.EPOCH,
                       validation_split=self.model_trainer_config.VALIDATION_SPLIT)
+            
+            #model.compile(loss=loss_function, optimizer=RMSprop(), metrics=METRICS)
+            model.summary()  # Call model.summary() after compilation
+
             logging.info("Model training finished")
 
             with open("tokenizer.pickle","wb") as handle:
