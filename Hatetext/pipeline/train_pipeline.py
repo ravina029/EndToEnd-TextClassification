@@ -77,7 +77,7 @@ class TrainPipeline:
     def  start_model_pusher(self,) -> ModelPusherArtifacts:
         logging.info("Entered inside start_model_pusher method of Training pipline ")
         try:
-            model_pusher=ModelPusher(model_pusher_config=self.model_evaluation_config,)
+            model_pusher=ModelPusher(model_pusher_config=self.model_pusher_config,)
 
             model_pusher_artifact=model_pusher.initiate_model_pusher()
             logging.info("initiated the model pusher and exited the start_model_pusher methos of training pipeline")
@@ -95,7 +95,8 @@ class TrainPipeline:
             data_ingestion_artifacts=self.start_data_ingestion()
             data_transformation_artifacts=self.start_data_transformation(data_ingestion_artifacts=data_ingestion_artifacts)
             model_trainer_artifacts=self.start_model_trainer(data_transformation_artifacts=data_transformation_artifacts)
-            model_evaluation_artifacts=self.start_model_evalution(model_trainer_artifacts,data_transformation_artifacts=data_transformation_artifacts)
+            model_evaluation_artifacts=self.start_model_evalution(model_trainer_artifacts=model_trainer_artifacts,
+                                                                  data_transformation_artifacts=data_transformation_artifacts)
 
 
             if not model_evaluation_artifacts.is_model_accepted:

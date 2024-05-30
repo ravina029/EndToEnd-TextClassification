@@ -22,6 +22,7 @@ class ModelEvaluation:
         
         """
         model evaluation part
+        
         """
 
         self.model_evaluation_config=model_evaluation_config
@@ -83,14 +84,14 @@ class ModelEvaluation:
             print(f"-------{X_test.shape}----------------")
             print(f"-------{y_test.shape}----------------")
 
-            accuracy=load_model.predict(test_sequences_matrix,y_test)
+            accuracy=load_model.evaluate(test_sequences_matrix,y_test)
 
             logging.info(f"test accuracy is: ---{accuracy}")
             model_prediction=load_model.predict(test_sequences_matrix)
 
             res=[]
             for prediction in model_prediction:
-                if prediction[0]<0.5:
+                if prediction[0] < 0.5:
                     res.append(0)
                 else:
                     res.append(1)
@@ -134,7 +135,7 @@ class ModelEvaluation:
                 best_model_accuracy=self.evaluate()
 
                 logging.info("comparing the loss betwee best_model_loss and trained_model_loss")
-                if best_model_accuracy> trained_model_accuracy:
+                if best_model_accuracy > trained_model_accuracy:
                     is_model_accepted=True
                     logging.info("gcloud model is accepted")
                 else:

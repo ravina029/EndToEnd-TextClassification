@@ -26,7 +26,7 @@ class ModelPusher:
                                               self.model_pusher_config.TRAINED_MODEL_PATH,
                                               self.model_pusher_config.MODEL_NAME)
             
-            logging.info("Uploaded the best model to the gcloud storage")
+            logging.info("Uploading the best model to the gcloud storage")
 
             #saving model pusher
 
